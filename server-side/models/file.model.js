@@ -8,17 +8,13 @@ const fileSchema = new Schema(
         description: { type: String, required: true, trim: true },
         file_path: { type: String, required: true, trim: true },
         file_mimetype: { type: String, required: true, trim: true },
-        expire_at: {
-            type: Date,
-            default: Date.now,
-            expires: 60 * 60 * 24 * 15, // Time to Line for the documents is set to 15 days after upload
-        },
     },
     {
         timestamps: true,
     }
 );
 
+fileSchema.index({ createdAt: 1 }, { expireAfterSeconds: 3600 * 24 * 7 });
 const File = mongoose.model("File", fileSchema);
 
 module.exports = File;
