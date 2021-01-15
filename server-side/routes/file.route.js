@@ -19,8 +19,12 @@ router.get("/", (req, res) => {
 
 // Route to create new file upload
 router.post("/", upload.single("file"), (req, res) => {
+    // upload(req, res, (err) => {
+    //     if (err) console.log(err);
+    //     else console.log(req.file);
+    // });
     try {
-        //console.log(req.file);
+        console.log(req.file);
         const { title, description } = req.body;
         const { path, mimetype } = req.file;
 
@@ -39,14 +43,20 @@ router.post("/", upload.single("file"), (req, res) => {
     }
 });
 
-router.get("/file/:id", (req, res) => {
+router.get("/get/:id", (req, res) => {
+    File.findById(req.params.id)
+        .then((file) => res.json(file))
+        .catch((err) => res.status(400).json(`Error: ${err}`));
+});
+
+router.get("/download/:id", (req, res) => {
     try {
         File.findById(req.params.id)
             .then((file) => {
                 res.set({
                     "Content-Type": file.file_mimetype,
                 });
-                res.sendFile(path.join(__dirname, "..", file.file_path));
+                res.sendFile(path.join(__dirname, "../..", file.file_path));
             })
             .catch((err) => res.status(400).json(`Error: ${err}`));
     } catch (error) {
@@ -55,6 +65,10 @@ router.get("/file/:id", (req, res) => {
                 "Error while fetching this file. Please try again later."
             );
     }
+});
+
+router.delete("/", (req, res) => {
+    File.deleteMany({}).then(() => res.json("All files deleted"));
 });
 
 module.exports = router;
