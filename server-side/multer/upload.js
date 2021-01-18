@@ -14,11 +14,13 @@ const upload = multer({
     },
     fileFilter(req, file, cb) {
         if (
-            !file.originalname.match(/\.(jpeg|jpg|png|pdf|doc|docx|xls|xlsx)$/)
+            !file.originalname.match(
+                /\.(jpeg|jpg|png|webp|gif|pdf|doc|docx|xls|xlsx)$/
+            )
         ) {
             return cb(
                 new Error(
-                    "supported file formats are jpg, jpeg, png, pdf, doc, docx, xslx, xls. Retry Once Again."
+                    "supported file formats are jpg, jpeg, png, webp, gif pdf, doc, docx, xslx and xls. Retry Once Again."
                 )
             );
         }
