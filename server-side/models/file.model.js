@@ -4,8 +4,6 @@ const Schema = mongoose.Schema;
 
 const fileSchema = new Schema(
     {
-        title: { type: String, required: true, trim: true },
-        description: { type: String, required: true, trim: true },
         file_path: { type: String, required: true, trim: true },
         file_mimetype: { type: String, required: true, trim: true },
     },
@@ -14,7 +12,7 @@ const fileSchema = new Schema(
     }
 );
 
-fileSchema.index({ createdAt: 1 }, { expireAfterSeconds: 3600 * 24 * 7 });
+fileSchema.index({ createdAt: 1 }, { expireAfterSeconds: 3600 * 24 });
 const File = mongoose.model("File", fileSchema);
 
 module.exports = File;
