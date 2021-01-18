@@ -18,12 +18,10 @@ router.get("/", (req, res) => {
 });
 
 // Route to create new file upload
-router.post("/", upload.single("file"), (req, res) => {
-    // upload(req, res, (err) => {
-    //     if (err) console.log(err);
-    //     else console.log(req.file);
-    // });
-    try {
+router.post(
+    "/",
+    upload.single("file"),
+    (req, res) => {
         console.log(req.file);
         const { title, description } = req.body;
         const { path, mimetype } = req.file;
@@ -36,12 +34,19 @@ router.post("/", upload.single("file"), (req, res) => {
         });
 
         file.save()
-            .then(() => res.json("File Uploaded Successfully!"))
+            .then(() => {
+                File.findOne({}, {}, { sort: { created_at: -1 } })
+                    .then((file) => res.json(file))
+                    .catch((err) => res.status(400).send(`Error: ${err}`));
+            })
             .catch((err) => res.status(400).json(`Error: ${err}`));
-    } catch (error) {
-        if (error) res.status(500).json(error.message);
+    },
+    (error, req, res, next) => {
+        if (error) {
+            res.status(500).send(error.message);
+        }
     }
-});
+);
 
 router.get("/get/:id", (req, res) => {
     File.findById(req.params.id)
