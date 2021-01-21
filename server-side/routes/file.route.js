@@ -22,7 +22,6 @@ router.post(
     "/",
     upload.single("file"),
     (req, res) => {
-        console.log(req.file);
         const { title, description } = req.body;
         const { path, mimetype } = req.file;
 
@@ -35,8 +34,10 @@ router.post(
 
         file.save()
             .then(() => {
-                File.findOne({}, {}, { sort: { created_at: -1 } })
-                    .then((file) => res.json(file))
+                File.find({})
+                    .sort({ createdAt: -1 })
+                    .limit(1)
+                    .then((file) => res.json(file[0]))
                     .catch((err) => res.status(400).send(`Error: ${err}`));
             })
             .catch((err) => res.status(400).json(`Error: ${err}`));
