@@ -12,7 +12,7 @@ const fileSchema = new Schema(
     }
 );
 
-fileSchema.index({ createdAt: 1 }, { expireAfterSeconds: 3600 * 24 });
+fileSchema.index({ createdAt: 1 }, { expireAfterSeconds: 3600 * 24 * 15 });
 const File = mongoose.model("File", fileSchema);
 
 module.exports = File;
