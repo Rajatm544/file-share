@@ -1,0 +1,177 @@
+button:focus {
+    outline: transparent;
+}
+
+section.home {
+    display: flex;
+    flex-flow: column nowrap;
+    margin-top: 5em;
+    align-items: center;
+}
+
+section.home p.error-msg {
+    font-size: 1.2em;
+    line-height: 1.2em;
+    font-weight: 500;
+    color: #08a1c4;
+    transition: 0.3s all ease-in-out;
+}
+
+section.file-upload {
+    display:flex;
+    flex-flow: column nowrap;
+    min-width: 60vw;
+    max-width: 70vw;
+    min-height: 50vh;
+    /* justify-content: space-between; */
+    align-items: center;
+}
+
+section.file-upload div.drop-zone {
+    min-width:100%;
+    min-height: 50vh;
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+    align-items: center;
+    border: 2px dashed #08a1c4;
+    transition: background 0.3s ease-in-out, color 0.3s ease-in-out;
+}
+
+section.file-upload div.drop-zone:focus {
+    outline: none;
+}
+
+section.file-upload div.drop-zone:active {
+    background: #08a1c4;
+    background: linear-gradient(135deg, #08a1c4 0%, #08cfbe 40%, #02b875 100%);
+}
+
+form.file-form {
+    display: flex;
+    flex-flow: column nowrap;
+}
+
+form.file-form button.submit-btn {
+    align-self: center;
+    border: 3px solid;
+    border-image-slice: 1;
+    background: rgba(8, 207, 78, 0.9);
+    color: white;
+    border-image-source: linear-gradient(135deg, #08a1c4 0%, #08cfbe 40%, #02b875 100%);
+    background: linear-gradient(135deg, #08a1c4 0%, #08cfbe 40%, #02b875 100%);
+    cursor: pointer;
+    width:20vw;
+    height:5vh;
+    font-weight: 700;
+    transition: all 0.3s ease-in-out;
+}
+
+form.file-form button.submit-btn:hover {
+    background: transparent;
+    color: #08a1c4;
+}
+.file-upload .image-preview-message {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width:100%;
+    height: 50%;
+}
+.file-upload div.image-preview {
+    display:inline-flex;
+    flex-flow: row wrap;
+    justify-content: center;
+}
+
+div.image-preview>img.preview-image {
+    max-width: 70%;
+    height: auto;
+    max-height: 50vh;
+    margin: 1em 0;
+    opacity:0;
+    border: 3px solid;
+    border-image-slice: 1;
+    border-width: 2px;
+    border-image-source: linear-gradient(135deg, #08a1c4 0%, #08cfbe 40%, #02b875 100%);
+    transition: 0.3s opacity ease-in-out;
+}
+
+div.progress  {
+    min-width: 50vw;
+    max-width: 60vw;
+}
+
+.progress .determinate {
+    background: linear-gradient(90deg, #08a1c4 0%, #08cfbe 40%, #02b875 100%);
+    box-shadow: inset 0 -1px 1px rgba(2, 184, 117, 0.5);
+    -moz-border-radius: 1em;
+    -webkit-border-radius: 1em;
+    border-radius: 0.5em;
+}
+
+button.share-link {
+    position: relative;
+    display: inline-block;
+    border: none;
+    color: cornflowerblue;
+    background: transparent;
+    text-transform: underline;
+    cursor: pointer;
+}
+
+button.share-link span.tooltiptext {
+    visibility: hidden;
+    position: absolute;
+    top: -80%;
+    left:20%;
+    /* margin-left: -6em; */
+    background: transparent;
+    font-size: 0.8em;
+    color: #08a1c4;
+    z-index: 5;
+    opacity: 0;
+    transition: all 0.2s ease-in-out;
+}
+
+button.share-link span.tooltiptext::after {
+    content: "";
+    position: absolute;
+    bottom: -40%;
+    left: 50%;
+    margin-left: -0.5em;
+    border-width: 0.4em;
+    border-style: solid;
+    border-color: #08cfbe transparent transparent transparent;
+}
+
+div.final-links {
+    display: inline-flex;
+    flex-flow: row wrap;
+    width:30vw;
+    justify-content: space-evenly;
+    margin-top:2vh;
+    opacity: 0;
+    transition: 0.3s opacity ease-in-out;
+}
+
+div.final-links .link {
+    font-size: 1.2em;
+    line-height: 1.2em;
+    width:12vw;
+    text-align: center;
+    font-weight: 500;
+    border: 3px solid;
+    border-image-slice: 1;
+    /* background: rgba(8, 207, 78, 0.9); */
+    color: white;
+    border-image-source: linear-gradient(135deg, #08a1c4 0%, #08cfbe 40%, #02b875 100%);
+    background: linear-gradient(315deg, #08a1c4 0%, #08cfbe 40%, rgb(2, 184, 117, 0.9) 100%);
+    padding: 0.3em;
+    transition: all 0.3s ease-in-out;
+}
+
+div.final-links .link:hover {
+    background: transparent;
+    color: #08a1c4;
+}
