@@ -6,7 +6,7 @@ const upload = multer({
             cb(null, "./server-side/sent_files");
         },
         filename(req, file, cb) {
-            cb(null, `${new Date().getTime()}_${file.originalname}`);
+            cb(null, `${new Date().getTime()}__${file.originalname}`);
         },
     }),
     limits: {
@@ -15,12 +15,13 @@ const upload = multer({
     fileFilter(req, file, cb) {
         if (
             !file.originalname.match(
-                /\.(jpeg|jpg|png|webp|gif|pdf|doc|docx|xls|xlsx)$/
+                /\.(jpeg|jpg|png|webp|gif|pdf|doc|docx|xls|xlsx|svg|ppt|pptx)$/
             )
         ) {
             return cb(
                 new Error(
-                    "supported file formats are jpg, jpeg, png, webp, gif pdf, doc, docx, xslx and xls. Retry Once Again."
+                    `Supported file formats include jpg, jpeg, png, webp, gif, svg, pdf, doc, docx, xslx, xls, ppt and pptx.
+                    Retry Once Again.`
                 )
             );
         }
