@@ -5,7 +5,7 @@ nav.navbar {
     position: fixed;
     top:0;
     right:0;
-    border: 1px solid #08CF4E;
+    /* border: 1px solid #08CF4E; */
     justify-content: space-between;
     align-items: center;
     padding:0;
