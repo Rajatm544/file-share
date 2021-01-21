@@ -1,11 +1,8 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import axios from "axios";
 import download from "downloadjs";
 
 const Download = (props) => {
-    // const link = useRef(null);
-    // const [file, setFile] = useState({});
-
     useEffect(() => {
         const id = props.match.params.id;
         axios
@@ -13,8 +10,8 @@ const Download = (props) => {
             .then((file) => {
                 const folders = file.data.file_path.split("/");
                 let filename = folders.pop();
-                const lastUnderScore = filename.lastIndexOf("_");
-                filename = filename.slice(lastUnderScore + 1);
+                const lastUnderScore = filename.lastIndexOf("__");
+                filename = filename.slice(lastUnderScore + 2);
                 axios
                     .get(
                         `http://localhost:5000/file/download/${file.data._id}`,
@@ -42,17 +39,6 @@ const Download = (props) => {
                 }
             });
     }, []);
-
-    // const downloadLink = (id, path, mimetype) => {};
-
-    // <a
-    //     ref={link}
-    //     href="#/"
-    //     onClick={() =>
-    //         downloadLink(file._id, file.file_path, file.file_mimetype)
-    //     }>
-    //     Download File
-    // </a>;
     return <p>Downloading the file...</p>;
 };
 
