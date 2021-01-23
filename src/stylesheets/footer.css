@@ -1,0 +1,25 @@
+footer {
+    width:100vw;
+    height: 7vh;
+    margin: 0;
+    font-weight: 600;
+    background: linear-gradient(135deg, hsl(191, 91%, 30%) 0%, hsl(175, 93%, 32%) 40%, hsl(158, 98%, 26%));
+    color: white;
+    display: inline-flex;
+    flex-flow: column nowrap;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.icons {
+    display: inline-flex;
+    flex-flow: row wrap;
+    justify-content: space-evenly;
+    width:20vw;
+}
+
+.icons i{
+    color:white;
+    font-size:1.2em;
+    margin:0;
+}
