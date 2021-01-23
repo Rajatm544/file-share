@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import axios from "axios";
 import download from "downloadjs";
+import "../stylesheets/download.css";
 
 const Download = (props) => {
     useEffect(() => {
@@ -26,7 +27,11 @@ const Download = (props) => {
                             file.file_mimetype
                         );
                     })
-                    .then(() => window.history.go(-1))
+                    .then(() =>
+                        window.setTimeout(() => {
+                            window.location.replace("http://localhost:3000/");
+                        }, 1000)
+                    )
                     .catch((err) => {
                         console.error(err);
                     });
@@ -34,12 +39,13 @@ const Download = (props) => {
             .catch((err) => {
                 if (err.message) {
                     alert("No such file is available in the server!");
+                    window.location.replace("http://localhost:3000/");
                 } else {
                     console.log(JSON.stringify(err));
                 }
             });
     }, []);
-    return <p>Downloading the file...</p>;
+    return <p className="prompt">Downloading the file...</p>;
 };
 
 export default Download;
