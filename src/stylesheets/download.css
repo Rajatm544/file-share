@@ -1,0 +1,11 @@
+p.prompt {
+    margin-top:8em;
+    color: #08a1c4;
+    font-family: "Poppins", sans-serif;
+    font-size:1.2em;
+    line-height: 1.2em;
+    font-weight: 500;
+    display: inline-flex;
+    justify-content: center;
+    align-items:center;
+}
