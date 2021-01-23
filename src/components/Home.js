@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import Dropzone from "react-dropzone";
 import axios from "axios";
 import download from "downloadjs";
-import M from "materialize-css";
+import logo from "../stylesheets/logo.png";
 import "../stylesheets/home.css";
 
 const Home = (props) => {
@@ -11,6 +11,7 @@ const Home = (props) => {
     const finalLinkRef = useRef(null);
     const firstRender = useRef(true);
     const previewImgRef = useRef(null);
+    const shareBtnRef = useRef(null);
     const [errorMsg, setErrorMsg] = useState("");
     const [file, setFile] = useState({});
     const [previewSrc, setPreviewSrc] = useState("");
@@ -106,18 +107,24 @@ const Home = (props) => {
                     setDisplayProgress(true);
                 })
                 .catch((err) => {
-                    const offlineError =
-                        "Error: MongooseServerSelectionError: Could not connect to any servers in your MongoDB Atlas cluster. One common reason is that you're trying to access the database from an IP that isn't whitelisted. Make sure your current IP address is on your Atlas cluster's IP whitelist: https://docs.atlas.mongodb.com/security-whitelist/";
-                    const fileSizeError = "File too large";
-                    if (err.response.data === offlineError)
+                    if (!err.response) {
                         setErrorMsg(
                             "Please connect to the internet and try again."
                         );
-                    else if (err.response.data === fileSizeError)
-                        setErrorMsg(
-                            "File is too large. Please choose a file of size < 1 MB."
-                        );
-                    else setErrorMsg(err.response.data);
+                    } else {
+                        const offlineError =
+                            "Error: MongooseServerSelectionError: Could not connect to any servers in your MongoDB Atlas cluster. One common reason is that you're trying to access the database from an IP that isn't whitelisted. Make sure your current IP address is on your Atlas cluster's IP whitelist: https://docs.atlas.mongodb.com/security-whitelist/";
+                        const fileSizeError = "File too large";
+                        if (err.response.data === offlineError)
+                            setErrorMsg(
+                                "Please connect to the internet and try again."
+                            );
+                        else if (err.response.data === fileSizeError)
+                            setErrorMsg(
+                                "File is too large. Please choose a file of size < 1 MB."
+                            );
+                        else setErrorMsg(err.response.data);
+                    }
                 });
         } else {
             setErrorMsg("Please Select a File.");
@@ -156,6 +163,14 @@ const Home = (props) => {
     };
 
     const handleBtnClick = (e) => {
+        shareBtnRef.current.style.background =
+            "linear-gradient(315deg, #08a1c4 0%, #08cfbe 40%, rgb(2, 184, 117, 0.9) 100%)";
+        shareBtnRef.current.style.color = "white";
+
+        window.setTimeout(() => {
+            shareBtnRef.current.style.background = "";
+            shareBtnRef.current.style.color = "";
+        }, 200);
         navigator.clipboard.writeText(
             `http://localhost:3000/file/download/${uploadedFile._id}`
         );
@@ -188,12 +203,15 @@ const Home = (props) => {
                                 ref={dropRef}>
                                 <input {...getInputProps()} />
                                 <p>
-                                    Drag and drop a file OR click here to select
-                                    a file
+                                    Drag and Drop a File <br />
+                                    or <br />
+                                    Click Here to Select a File
                                 </p>
                                 {file.name ? (
                                     <div className="file-name">
-                                        <strong>Selected file:</strong>{" "}
+                                        <strong style={{ fontWeight: "700" }}>
+                                            Selected file:
+                                        </strong>{" "}
                                         {file.name}
                                     </div>
                                 ) : (
@@ -245,7 +263,10 @@ const Home = (props) => {
                         ref={submitBtn}
                         className="submit-btn"
                         type="submit">
+                        <span></span>
                         Submit
+                        <img className="submit-icon" src={logo} alt="logo" />
+                        <span></span>
                     </button>
                 ) : (
                     ""
@@ -254,9 +275,7 @@ const Home = (props) => {
 
             {uploadedFile._id && displayLinks ? (
                 <div className="final-links" ref={finalLinkRef}>
-                    <a
-                        href="#/"
-                        title="Download the file"
+                    <button
                         className="link"
                         onClick={() =>
                             downloadLink(
@@ -266,13 +285,15 @@ const Home = (props) => {
                             )
                         }>
                         Download File
-                    </a>{" "}
+                        <i className="material-icons">file_download</i>
+                    </button>
                     <button
                         className="share-link link"
                         onClick={handleBtnClick}
-                        title="Copy link to clipboard"
+                        ref={shareBtnRef}
                         aria-label="Click to copy link">
-                        Share File
+                        <span></span> Share File
+                        <i className="material-icons">share</i>
                         <span className="tooltiptext">Link Copied!</span>
                     </button>
                 </div>
