@@ -3,13 +3,15 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Home from "./components/Home";
 import Download from "./components/Download";
 import Navbar from "./components/Navbar";
+import Footer from "./components/Footer";
+import NotFound from "./components/NotFound";
 import "./App.css";
 
 const App = () => {
     return (
-        <div>
+        <div className="app">
+            <Navbar />
             <Router>
-                <Navbar />
                 <Switch>
                     <Route path="/" exact component={Home} />
                     <Route
@@ -17,8 +19,10 @@ const App = () => {
                         exact
                         component={Download}
                     />
+                    <Route component={NotFound} />
                 </Switch>
             </Router>
+            <Footer />
         </div>
     );
 };
