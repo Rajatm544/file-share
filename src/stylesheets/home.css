@@ -5,13 +5,14 @@ button:focus {
 section.home {
     display: flex;
     flex-flow: column nowrap;
-    margin-top: 5em;
+    margin-top: 4em;
     align-items: center;
+    font-family: 'Poppins', sans-serif;
 }
 
 section.home p.error-msg {
-    font-size: 1.2em;
-    line-height: 1.2em;
+    font-size: 1em;
+    line-height: 1.5em;
     font-weight: 500;
     color: #08a1c4;
     transition: 0.3s all ease-in-out;
@@ -30,12 +31,17 @@ section.file-upload {
 section.file-upload div.drop-zone {
     min-width:100%;
     min-height: 50vh;
+    font-size:1em;
+    line-height: 1.5em;
     display: flex;
+    text-align: center;
     flex-flow: column nowrap;
     justify-content: center;
     align-items: center;
     border: 2px dashed #08a1c4;
     transition: background 0.3s ease-in-out, color 0.3s ease-in-out;
+    color:#08a1c4;
+    font-weight: 500;
 }
 
 section.file-upload div.drop-zone:focus {
@@ -53,6 +59,10 @@ form.file-form {
 }
 
 form.file-form button.submit-btn {
+    display: inline-flex;
+    flex-flow: row nowrap;
+    justify-content: space-evenly;
+    align-items: center;
     align-self: center;
     border: 3px solid;
     border-image-slice: 1;
@@ -61,9 +71,11 @@ form.file-form button.submit-btn {
     border-image-source: linear-gradient(135deg, #08a1c4 0%, #08cfbe 40%, #02b875 100%);
     background: linear-gradient(135deg, #08a1c4 0%, #08cfbe 40%, #02b875 100%);
     cursor: pointer;
-    width:20vw;
+    width:15vw;
     height:5vh;
     font-weight: 700;
+    font-size:1.2em;
+    line-height: 1.2em;
     transition: all 0.3s ease-in-out;
 }
 
@@ -71,12 +83,28 @@ form.file-form button.submit-btn:hover {
     background: transparent;
     color: #08a1c4;
 }
+
+img.submit-icon {
+    width:1.1em;
+    height:1.1em;
+    transition: all 0.3s ease-in-out;
+}
+
+button.submit-btn:hover img.submit-icon {
+    filter: invert(57%) sepia(22%) saturate(7130%) hue-rotate(155deg) brightness(89%) contrast(94%);
+    
+}
+
 .file-upload .image-preview-message {
     display: inline-flex;
     align-items: center;
     justify-content: center;
     width:100%;
     height: 50%;
+    color: #08a1c4;
+    font-size:1em;
+    line-height: 1.5em;
+    font-weight: 500;
 }
 .file-upload div.image-preview {
     display:inline-flex;
@@ -90,11 +118,12 @@ div.image-preview>img.preview-image {
     max-height: 50vh;
     margin: 1em 0;
     opacity:0;
-    border: 3px solid;
-    border-image-slice: 1;
-    border-width: 2px;
-    border-image-source: linear-gradient(135deg, #08a1c4 0%, #08cfbe 40%, #02b875 100%);
+    /* border: 3px solid; */
+    /* border-image-slice: 1; */
+    /* border-width: 2px; */
+    /* border-image-source: linear-gradient(135deg, #08a1c4 0%, #08cfbe 40%, #02b875 100%); */
     transition: 0.3s opacity ease-in-out;
+    z-index:10;
 }
 
 div.progress  {
@@ -104,7 +133,6 @@ div.progress  {
 
 .progress .determinate {
     background: linear-gradient(90deg, #08a1c4 0%, #08cfbe 40%, #02b875 100%);
-    box-shadow: inset 0 -1px 1px rgba(2, 184, 117, 0.5);
     -moz-border-radius: 1em;
     -webkit-border-radius: 1em;
     border-radius: 0.5em;
@@ -113,21 +141,14 @@ div.progress  {
 button.share-link {
     position: relative;
     display: inline-block;
-    border: none;
-    color: cornflowerblue;
-    background: transparent;
-    text-transform: underline;
-    cursor: pointer;
 }
 
 button.share-link span.tooltiptext {
     visibility: hidden;
     position: absolute;
-    top: -80%;
-    left:20%;
-    /* margin-left: -6em; */
-    background: transparent;
-    font-size: 0.8em;
+    left:100%;
+    width:7.5em;
+    font-size: 0.9em;
     color: #08a1c4;
     z-index: 5;
     opacity: 0;
@@ -137,12 +158,12 @@ button.share-link span.tooltiptext {
 button.share-link span.tooltiptext::after {
     content: "";
     position: absolute;
-    bottom: -40%;
-    left: 50%;
+    bottom: 25%;
+    right: 90%;
     margin-left: -0.5em;
     border-width: 0.4em;
     border-style: solid;
-    border-color: #08cfbe transparent transparent transparent;
+    border-color: transparent #08cfbe transparent transparent;
 }
 
 div.final-links {
@@ -150,14 +171,23 @@ div.final-links {
     flex-flow: row wrap;
     width:30vw;
     justify-content: space-evenly;
-    margin-top:2vh;
     opacity: 0;
     transition: 0.3s opacity ease-in-out;
 }
 
+/* i.material-icons {
+    padding:0;
+    margin:0;
+    border: 1px solid red;
+} */
+
 div.final-links .link {
-    font-size: 1.2em;
-    line-height: 1.2em;
+    display:inline-flex;
+    flex-flow:row nowrap;
+    justify-content: space-evenly;
+    align-items: center;
+    font-size: 1.1em;
+    line-height: 1.5em;
     width:12vw;
     text-align: center;
     font-weight: 500;
@@ -167,7 +197,8 @@ div.final-links .link {
     color: white;
     border-image-source: linear-gradient(135deg, #08a1c4 0%, #08cfbe 40%, #02b875 100%);
     background: linear-gradient(315deg, #08a1c4 0%, #08cfbe 40%, rgb(2, 184, 117, 0.9) 100%);
-    padding: 0.3em;
+    padding: 0em;
+    cursor: pointer;
     transition: all 0.3s ease-in-out;
 }
 
