@@ -1,0 +1,55 @@
+div.about {
+    margin-top:5em;
+    display: inline-flex;
+    flex-flow: column wrap;
+    justify-content: space-around;
+    align-items: flex-start;
+    max-width: 75vw;
+    min-height: 27em;
+    margin-left: 10vw;
+}
+
+.about h1.about-heading {
+    font-family: "Poppins", sans-serif;
+    font-size: 2.7em;
+    line-height: 0.2em;
+    font-weight: 500;
+    color: #08cfbe;
+}
+
+.about section.main-text {
+    display: inline-flex;
+    flex-flow: row nowrap;
+    justify-content: center;
+    align-items: center;
+    width:100%;
+    margin-top: -5em;
+}
+
+.about-text p.about-p {
+    font-family: "Poppins", sans-serif;
+    font-size: 1em;
+    line-height: 1.5em;
+    font-weight: 400;
+    color: #08a1c4;
+    width:80%;
+}
+
+i.lni-question-circle  {
+    font-size: 12em;
+    color: #08cfbe;
+    align-self: flex-end;
+    margin-bottom: 0.3em;
+}
+
+span.file-type {
+    color: #02b875;
+    font-weight: 500;
+    text-decoration: underline;
+}
+
+hr.about-hr {
+     border: 0;
+     height: 1px;
+     background-image: linear-gradient(to left, rgba(0, 0, 0, 0), #08cfbe, rgba(0, 0, 0, 0));
+}
