@@ -16,8 +16,8 @@
   "start_url": "/",
   "description": "A file sharing app built by Rajat",
   "display": "standalone",
-  "theme_color": "#08cfbe",
-  "background_color": "#08a1c4"
+  "theme_color": "#08a1c4",
+  "background_color": "#08cfbe"
 }
 
 
