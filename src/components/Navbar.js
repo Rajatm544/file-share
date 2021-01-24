@@ -1,17 +1,28 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import "../stylesheets/navbar.css";
 import logo from "../stylesheets/logo.png";
 
 const Navbar = () => {
     return (
         <nav className="navbar">
-            <div className="nav-brand" onClick={() => window.location.reload()}>
-                EasyShare
-                <img className="logo" src={logo} alt="Logo"></img>
+            <div className="nav-brand">
+                <Link to="/">
+                    EasyShare
+                    <img className="logo" src={logo} alt="Logo"></img>
+                </Link>
             </div>
             <ul className="nav-ul">
-                <li className="nav-li">About</li>
-                <li className="nav-li">Help</li>
+                <li className="nav-li">
+                    <Link className="about" to="/about">
+                        About
+                    </Link>
+                </li>
+                {/* <li className="nav-li">
+                    <Link className="about" to="/help">
+                        Help
+                    </Link>
+                </li> */}
             </ul>
         </nav>
     );
