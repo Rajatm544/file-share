@@ -20,8 +20,7 @@ const upload = multer({
         ) {
             return cb(
                 new Error(
-                    `Supported file formats include jpg, jpeg, png, webp, gif, svg, pdf, doc, docx, xlsx, xls, ppt and pptx.
-                    Retry Once Again.`
+                    "Unsupported file format, please choose a different file and retry."
                 )
             );
         }
