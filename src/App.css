@@ -12,3 +12,9 @@ div.app {
   flex-flow: column wrap;
   justify-content: space-between;
 }
+
+@media screen and (max-width:600px) {
+  div.app {
+    overflow-y: hidden;
+  }
+}
