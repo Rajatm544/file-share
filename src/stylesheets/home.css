@@ -206,3 +206,84 @@ div.final-links .link:hover {
     background: transparent;
     color: #08a1c4;
 }
+
+@media screen and (max-width:600px) {
+
+    section.home {
+        margin-top: 5em;
+    }
+
+    section.home p.error-msg {
+        font-size: 0.9em;
+        line-height: 1.67em;
+        text-align: center;
+        max-width:90vw;
+    }
+
+    section.file-upload {
+        min-width: 90vw;
+        max-width: 95vw;
+        min-height: 50vh;
+    }
+
+    section.file-upload div.drop-zone {
+       padding: 0.2em;
+    }
+
+    form.file-form {
+        text-align: center;
+    }
+
+    form.file-form button.submit-btn {
+        min-width: 40vw;
+        width: auto;
+    }
+
+    img.submit-icon {
+        width: 1em;
+        height: 1em;
+    }
+
+    div.image-preview>img.preview-image {
+        max-width: 80%;
+        height: auto;
+        max-height: 40vh;
+        /* border: 2px solid;
+        border-image-slice: 1;
+        border-image-source: linear-gradient(135deg, #08a1c4 0%, #08cfbe 40%, #02b875 100%); */
+    }
+
+    div.progress {
+        min-width: 60vw;
+        max-width: 70vw;
+    }
+
+    button.share-link span.tooltiptext {
+        top:110%;
+        left: 15%;
+        width: 7em;
+        padding:0;
+    }
+
+    button.share-link span.tooltiptext::after {
+        bottom: 80%;
+        right: 50%;
+        border-color: transparent transparent #08cfbe transparent;
+    }
+
+    div.final-links {
+        flex-flow: row nowrap;
+        width: 80vw;
+        justify-content: space-evenly;
+    }
+
+    div.final-links .link {
+        justify-content: space-evenly;
+        font-size: 1.1em;
+        line-height: 1.67em;
+        width: auto;
+        padding: 0.2em;
+        min-width: 35vw;
+        border: 2px solid;
+    }
+}

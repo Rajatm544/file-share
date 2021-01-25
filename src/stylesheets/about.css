@@ -53,3 +53,43 @@ hr.about-hr {
      height: 1px;
      background-image: linear-gradient(to left, rgba(0, 0, 0, 0), #08cfbe, rgba(0, 0, 0, 0));
 }
+
+@media screen and (max-width: 600px) {
+    div.about {
+        margin-top: 4em;
+        flex-flow: column nowrap;
+        max-width: 80vw;
+        margin-left: 5vw;
+    }
+
+    .about h1.about-heading {
+        font-size: 2.1em;
+        line-height: 1.2em;
+        margin: 1em 0;
+        width:70%;
+    }
+
+    hr.about-hr {
+        border: 0;
+        height: 2px;
+        align-self: flex-start;
+        background: #08cfbe;
+        width: 50%;
+        margin: 0;
+    }
+
+    .about section.main-text {
+        width: 110%;
+        margin-top: -2em;
+    }
+
+    .about-text p.about-p {
+        width: 100%;
+    }
+
+    i.lni-question-circle {
+        display:none;
+        visibility: hidden;
+        opacity: 0;
+    }
+}

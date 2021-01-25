@@ -6,6 +6,13 @@
      align-items: center;
  }
 
+ div.error-text {
+     display: inline-flex;
+     flex-flow: column nowrap;
+     justify-content: space-evenly;
+     align-items: center;
+ }
+
  img.err-404 {
      width:5em;
      height:5em;
@@ -27,4 +34,21 @@ a.link-home {
     border-bottom: 2px dashed #08a1c4;
     font-weight: 700;
     margin: 0 0.2em;
+}
+
+@media screen and (max-width:600px) {
+    div.error-page {
+        max-width: 90vw;
+        align-self: center;
+    }
+
+    img.err-404 {
+        width: 5em;
+        height: 5em;
+    }
+
+    p.not-found {
+        flex-flow: row wrap;
+        text-align: center;
+    }
 }

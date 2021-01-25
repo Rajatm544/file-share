@@ -43,9 +43,9 @@ div.nav-brand img.logo {
 ul.nav-ul {
     display: flex;
     flex-flow: row nowrap;
-    justify-content: space-evenly;
+    justify-content: space-around;
     align-items: center;
-    width:15%;
+    width:10%;
     margin: 0;
     height: 80%;
 }
@@ -81,4 +81,23 @@ li.nav-li a {
 
 li.nav-li:hover a{
     background: none;
+}
+
+@media screen and (max-width: 600px) {
+    nav.navbar div.nav-brand {
+        width:auto;
+        margin-left: 1em;
+    }
+
+    div.nav-brand img.logo {
+        margin-left:0.3em;
+    }
+
+    ul.nav-ul {
+        width: 25%;
+    }
+
+    ul.nav-ul li.nav-li {
+        width: auto;
+    }
 }

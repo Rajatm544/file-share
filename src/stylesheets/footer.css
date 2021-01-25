@@ -23,3 +23,15 @@ footer {
     font-size:1.2em;
     margin:0;
 }
+
+@media screen and (max-width: 600px) {
+footer {
+    min-height: 10vh;
+    height: auto;
+    box-shadow: none;
+}
+
+.icons {
+    width: 50vw;
+}
+}
