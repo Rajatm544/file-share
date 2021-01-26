@@ -5,13 +5,16 @@ import download from "downloadjs";
 import logo from "../stylesheets/logo.png";
 import "../stylesheets/home.css";
 
-const Home = (props) => {
+const baseURL = process.env.BASE_URL || "http://localhost:5000";
+
+const Home = () => {
     const dropRef = useRef(null);
     const submitBtn = useRef(null);
     const finalLinkRef = useRef(null);
-    const firstRender = useRef(true);
     const previewImgRef = useRef(null);
     const shareBtnRef = useRef(null);
+    const firstRender = useRef(true);
+
     const [errorMsg, setErrorMsg] = useState("");
     const [file, setFile] = useState({});
     const [previewSrc, setPreviewSrc] = useState("");
@@ -88,6 +91,62 @@ const Home = (props) => {
         }
     };
 
+    const handleFile = (files) => {
+        const [uploadedFile] = files;
+        setFile(uploadedFile);
+        setDisplayLinks(false);
+
+        const fileReader = new FileReader();
+        fileReader.onload = () => {
+            setPreviewSrc(fileReader.result);
+        };
+        fileReader.readAsDataURL(uploadedFile);
+
+        setIsPreviewAvailable(
+            uploadedFile.name.match(/\.(jpeg|jpg|png|webp|gif|svg)$/)
+        );
+    };
+
+    const handleBtnClick = (e) => {
+        shareBtnRef.current.style.background =
+            "linear-gradient(315deg, #08a1c4 0%, #08cfbe 40%, rgb(2, 184, 117, 0.9) 100%)";
+        shareBtnRef.current.style.color = "white";
+
+        window.setTimeout(() => {
+            shareBtnRef.current.style.background = "";
+            shareBtnRef.current.style.color = "";
+        }, 200);
+        navigator.clipboard.writeText(
+            `${baseURL}/file/download/${uploadedFile._id}`
+        );
+
+        const toolTip = document.querySelector(
+            "button.share-link .tooltiptext"
+        );
+        toolTip.style.visibility = "visible";
+        toolTip.style.opacity = "1";
+
+        window.setTimeout(() => {
+            toolTip.style.visibility = "hidden";
+            toolTip.style.opacity = "0";
+        }, 5000);
+    };
+
+    const downloadLink = (id, path, mimetype) => {
+        const folders = path.split("/");
+        let filename = folders.pop();
+        const lastUnderScore = filename.lastIndexOf("__");
+        filename = filename.slice(lastUnderScore + 2);
+        axios
+            .get(`${baseURL}/server/file/download/${id}`, {
+                responseType: "blob",
+            })
+            .then((file) => {
+                return download(file.data, filename, mimetype);
+            })
+            .catch((err) => console.error(err));
+    };
+
     const handleSubmit = (e) => {
         e.preventDefault();
         submitBtn.current.style.opacity = "0";
@@ -95,7 +154,7 @@ const Home = (props) => {
             const formdata = new FormData();
             formdata.append("file", file);
             axios
-                .post("http://localhost:5000/file/", formdata, {
+                .post(`${baseURL}/server/file/`, formdata, {
                     headers: {
                         "Content-Type": "multipart/form-data",
                     },
@@ -129,62 +188,6 @@ const Home = (props) => {
         } else {
             setErrorMsg("Please Select a File.");
         }
-    };
-
-    const handleFile = (files) => {
-        const [uploadedFile] = files;
-        setFile(uploadedFile);
-        setDisplayLinks(false);
-
-        const fileReader = new FileReader();
-        fileReader.onload = () => {
-            setPreviewSrc(fileReader.result);
-        };
-        fileReader.readAsDataURL(uploadedFile);
-
-        setIsPreviewAvailable(
-            uploadedFile.name.match(/\.(jpeg|jpg|png|webp|gif|svg)$/)
-        );
-    };
-
-    const downloadLink = (id, path, mimetype) => {
-        const folders = path.split("/");
-        let filename = folders.pop();
-        const lastUnderScore = filename.lastIndexOf("__");
-        filename = filename.slice(lastUnderScore + 2);
-        axios
-            .get(`http://localhost:5000/file/download/${id}`, {
-                responseType: "blob",
-            })
-            .then((file) => {
-                return download(file.data, filename, mimetype);
-            })
-            .catch((err) => console.error(err));
-    };
-
-    const handleBtnClick = (e) => {
-        shareBtnRef.current.style.background =
-            "linear-gradient(315deg, #08a1c4 0%, #08cfbe 40%, rgb(2, 184, 117, 0.9) 100%)";
-        shareBtnRef.current.style.color = "white";
-
-        window.setTimeout(() => {
-            shareBtnRef.current.style.background = "";
-            shareBtnRef.current.style.color = "";
-        }, 200);
-        navigator.clipboard.writeText(
-            `http://localhost:3000/file/download/${uploadedFile._id}`
-        );
-
-        const toolTip = document.querySelector(
-            "button.share-link .tooltiptext"
-        );
-        toolTip.style.visibility = "visible";
-        toolTip.style.opacity = "1";
-
-        window.setTimeout(() => {
-            toolTip.style.visibility = "hidden";
-            toolTip.style.opacity = "0";
-        }, 5000);
     };
 
     return (
