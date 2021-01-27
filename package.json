@@ -40,8 +40,7 @@
     "eject": "react-scripts eject",
     "client": "yarn start",
     "server": "nodemon server-side/server.js",
-    "install-client": "npm install",
-    "heroku-postbuild":"npm run install-client && npm run build",
+    "heroku-postbuild":"npm install && npm run build",
     "dev": "concurrently --kill-others-on-fail \"yarn server\" \"yarn client\""
   },
   "eslintConfig": {
