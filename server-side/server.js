@@ -31,7 +31,8 @@ app.use("/server/file", fileRouter);
 //Load the npm build package of the frontend CRA
 if (process.env.NODE_ENV === "production") {
     // set a static folder
-    app.use(express.static("/build"));
+    // app.use(express.static("/build"));
+    app.use("/static", express.static(path.join(__dirname, "../build")));
 
     // Provide a wildcard as a fallback for all routes
     app.get("*", (req, res) => {
