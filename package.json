@@ -34,13 +34,15 @@
     "workbox-streams": "^5.1.3"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
+    "start": "node server-side/server.js",
+    "build": "npm run build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "client": "yarn start",
     "server": "nodemon server-side/server.js",
-    "dev": "concurrently --kill-others-on-fail \"yarn server\" \"yarn client\""
+    "dev": "concurrently --kill-others-on-fail \"yarn server\" \"yarn client\"",
+    "install": "npm install",
+    "heroku-postbuild": "npm run install && npm run build"
   },
   "eslintConfig": {
     "extends": [
