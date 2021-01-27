@@ -35,14 +35,14 @@
   },
   "scripts": {
     "start": "node server-side/server.js",
-    "build": "npm run build",
+    "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "client": "yarn start",
     "server": "nodemon server-side/server.js",
-    "dev": "concurrently --kill-others-on-fail \"yarn server\" \"yarn client\"",
-    "install": "npm install",
-    "heroku-postbuild": "npm run install && npm run build"
+    "install-client": "npm install",
+    "heroku-postbuild":"npm run install-client && npm run build",
+    "dev": "concurrently --kill-others-on-fail \"yarn server\" \"yarn client\""
   },
   "eslintConfig": {
     "extends": [
