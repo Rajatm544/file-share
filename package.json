@@ -41,7 +41,6 @@
     "client": "yarn start",
     "server": "nodemon server-side/server.js",
     "heroku-postbuild":"npm install && npm run build",
-    "homepage": "https://rajat-easyshare.herokuapp.com/",
     "dev": "concurrently --kill-others-on-fail \"yarn server\" \"yarn client\""
   },
   "eslintConfig": {
