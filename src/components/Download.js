@@ -3,7 +3,7 @@ import axios from "axios";
 import download from "downloadjs";
 import "../stylesheets/download.css";
 
-const baseURL = process.env.BASE_URL || "http://localhost:5000";
+const baseURL = process.env.REACT_APP_BASEURL || "http://localhost:5000";
 let frontURL = "";
 if (baseURL === "http://localhost:5000") {
     frontURL = "http://localhost:3000";
