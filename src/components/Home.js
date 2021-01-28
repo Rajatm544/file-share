@@ -172,7 +172,7 @@ const Home = () => {
                         const fileSizeError = "File too large";
                         if (err.response.data === offlineError)
                             setErrorMsg(
-                                "Please connect to the internet and try again."
+                                "Please connect to the internet and retry."
                             );
                         else if (err.response.data === fileSizeError)
                             setErrorMsg(
