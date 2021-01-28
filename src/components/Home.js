@@ -150,11 +150,12 @@ const Home = () => {
                 .then((file) => {
                     setErrorMsg("");
                     submitBtn.current.style.visibility = "hidden";
-                    setDisplayProgress(true);
-                    setDisplayLinks(true);
+
                     axios
                         .get(`${baseURL}/server/file/get/${file.data._id}`)
                         .then((uploadedFile) => {
+                            setDisplayProgress(true);
+                            setDisplayLinks(true);
                             setUploadedFile(uploadedFile.data);
                         })
                         .catch((err) => {
