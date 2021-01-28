@@ -15,30 +15,18 @@ const Download = (props) => {
         axios
             .get(`${baseURL}/server/file/get/${id}`)
             .then((file) => {
-                const folders = file.data.file_path.split("/");
-                let filename = folders.pop();
-                const lastUnderScore = filename.lastIndexOf("__");
-                filename = filename.slice(lastUnderScore + 2);
-                axios
-                    .get(`${baseURL}/server/file/download/${file.data._id}`, {
-                        responseType: "blob",
-                    })
-                    .then((file) => {
-                        return download(
-                            file.data,
-                            filename,
-                            file.file_mimetype
-                        );
-                    })
-                    .then(() =>
-                        window.setTimeout(() => {
-                            window.location.replace(frontURL || baseURL);
-                        }, 1000)
-                    )
-                    .catch((err) => {
-                        console.error(err);
-                    });
+                const downloadFile = file.data;
+                download(
+                    Uint8Array.from(downloadFile.data.Body.data).buffer,
+                    downloadFile.file.file_name,
+                    downloadFile.file.file_mimetype
+                );
             })
+            .then(() =>
+                window.setTimeout(() => {
+                    window.location.replace(frontURL || baseURL);
+                }, 1000)
+            )
             .catch((err) => {
                 if (err.message) {
                     alert("No such file is available in the server!");
