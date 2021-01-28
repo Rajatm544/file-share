@@ -25,23 +25,25 @@ const Home = () => {
     const [displayLinks, setDisplayLinks] = useState(false);
 
     useEffect(() => {
-        if (progress < 100 && displayProgress) {
-            window.setTimeout(() => {
-                setProgress(progress + 1);
-            }, 50);
-        } else {
-            if (uploadedFile._id && progress >= 99) {
+        if (!firstRender.current) {
+            if (progress < 100 && displayProgress) {
                 window.setTimeout(() => {
-                    setDisplayProgress(false);
-                    setProgress(0);
-                    setDisplayLinks(true);
+                    setProgress(progress + 2);
+                }, 50);
+            } else {
+                if (uploadedFile.file._id && progress >= 99) {
                     window.setTimeout(() => {
-                        finalLinkRef.current.style.opacity = "1";
-                    }, 100);
-                }, 1000);
-            }
-            if (progress !== 0 && !uploadedFile._id) {
-                setProgress(99);
+                        setDisplayProgress(false);
+                        setProgress(0);
+                        setDisplayLinks(true);
+                        window.setTimeout(() => {
+                            finalLinkRef.current.style.opacity = "1";
+                        }, 100);
+                    }, 1000);
+                }
+                if (progress !== 0 && !uploadedFile.file._id) {
+                    setProgress(99);
+                }
             }
         }
     }, [progress, displayProgress, uploadedFile]);
@@ -117,7 +119,7 @@ const Home = () => {
             shareBtnRef.current.style.color = "";
         }, 200);
         navigator.clipboard.writeText(
-            `${baseURL}/file/download/${uploadedFile._id}`
+            `${baseURL}/file/download/${uploadedFile.file._id}`
         );
 
         const toolTip = document.querySelector(
@@ -132,21 +134,6 @@ const Home = () => {
         }, 5000);
     };
 
-    const downloadLink = (id, path, mimetype) => {
-        const folders = path.split("/");
-        let filename = folders.pop();
-        const lastUnderScore = filename.lastIndexOf("__");
-        filename = filename.slice(lastUnderScore + 2);
-        axios
-            .get(`${baseURL}/server/file/download/${id}`, {
-                responseType: "blob",
-            })
-            .then((file) => {
-                return download(file.data, filename, mimetype);
-            })
-            .catch((err) => console.error(err));
-    };
-
     const handleSubmit = (e) => {
         e.preventDefault();
         submitBtn.current.style.opacity = "0";
@@ -159,11 +146,20 @@ const Home = () => {
                         "Content-Type": "multipart/form-data",
                     },
                 })
+
                 .then((file) => {
-                    setUploadedFile({ ...file.data });
                     setErrorMsg("");
                     submitBtn.current.style.visibility = "hidden";
                     setDisplayProgress(true);
+                    setDisplayLinks(true);
+                    axios
+                        .get(`${baseURL}/server/file/get/${file.data._id}`)
+                        .then((uploadedFile) => {
+                            setUploadedFile(uploadedFile.data);
+                        })
+                        .catch((err) => {
+                            console.log(err);
+                        });
                 })
                 .catch((err) => {
                     if (!err.response) {
@@ -276,15 +272,16 @@ const Home = () => {
                 )}
             </form>
 
-            {uploadedFile._id && displayLinks ? (
+            {displayLinks ? (
                 <div className="final-links" ref={finalLinkRef}>
                     <button
                         className="link"
                         onClick={() =>
-                            downloadLink(
-                                uploadedFile._id,
-                                uploadedFile.file_path,
-                                uploadedFile.file_mimetype
+                            download(
+                                Uint8Array.from(uploadedFile.data.Body.data)
+                                    .buffer,
+                                uploadedFile.file.file_name,
+                                uploadedFile.file.file_mimetype
                             )
                         }>
                         Download File
