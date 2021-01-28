@@ -4,8 +4,10 @@ const Schema = mongoose.Schema;
 
 const fileSchema = new Schema(
     {
-        file_path: { type: String, required: true, trim: true },
+        file_key: { type: String, required: true, trim: true },
         file_mimetype: { type: String, required: true, trim: true },
+        file_location: { type: String, required: true, trim: true },
+        file_name: { type: String, required: true, trim: true },
     },
     {
         timestamps: true,
