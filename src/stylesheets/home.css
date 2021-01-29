@@ -76,7 +76,7 @@ form.file-form button.submit-btn {
     font-weight: 700;
     font-size:1.2em;
     line-height: 1.2em;
-    transition: all 0.3s ease-in-out;
+    transition: all 0.2s ease-in-out;
 }
 
 form.file-form button.submit-btn:hover {
