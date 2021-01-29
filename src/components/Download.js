@@ -13,7 +13,7 @@ const Download = (props) => {
     useEffect(() => {
         const id = props.match.params.id;
         axios
-            .get(`${baseURL}/server/file/get/${id}`)
+            .get(`${baseURL}/api/file/${id}`)
             .then((file) => {
                 const downloadFile = file.data;
                 download(
