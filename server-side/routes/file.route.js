@@ -92,7 +92,7 @@ router.post(
     }
 );
 
-router.get("/get/:id", (req, res) => {
+router.get("/:id", (req, res) => {
     File.findById(req.params.id)
         .then((file) => {
             res.set({
