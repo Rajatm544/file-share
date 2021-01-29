@@ -26,7 +26,7 @@ connection.once("open", () => {
 
 // configure the routes
 const fileRouter = require("./routes/file.route");
-app.use("/server/file", fileRouter);
+app.use("/api/file", fileRouter);
 
 //Load the npm build package of the frontend CRA
 if (process.env.NODE_ENV === "production") {
