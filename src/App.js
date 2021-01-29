@@ -15,11 +15,7 @@ const App = () => {
                 <Navbar />
                 <Switch>
                     <Route path="/" exact component={Home} />
-                    <Route
-                        path="/file/download/:id"
-                        exact
-                        component={Download}
-                    />
+                    <Route path="/download/:id" exact component={Download} />
                     <Route path="/about" exact component={About} />
                     <Route component={NotFound} />
                 </Switch>
