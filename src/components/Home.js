@@ -6,6 +6,10 @@ import logo from "../stylesheets/logo.png";
 import "../stylesheets/home.css";
 
 const baseURL = process.env.REACT_APP_BASEURL || "http://localhost:5000";
+let frontURL = "";
+if (baseURL === "http://localhost:5000") {
+    frontURL = "http://localhost:3000";
+}
 
 const Home = () => {
     const dropRef = useRef(null);
@@ -25,27 +29,21 @@ const Home = () => {
     const [displayLinks, setDisplayLinks] = useState(false);
 
     useEffect(() => {
-        if (!firstRender.current) {
-            if (progress < 100 && displayProgress) {
+        if (progress < 100 && displayProgress) {
+            window.setTimeout(() => {
+                setProgress(progress + 2);
+            }, 100);
+        } else if (uploadedFile.file && progress >= 99) {
+            window.setTimeout(() => {
+                setDisplayProgress(false);
+                setProgress(0);
+                setDisplayLinks(true);
+
                 window.setTimeout(() => {
-                    setProgress(progress + 2);
-                }, 50);
-            } else {
-                if (uploadedFile.file._id && progress >= 99) {
-                    window.setTimeout(() => {
-                        setDisplayProgress(false);
-                        setProgress(0);
-                        setDisplayLinks(true);
-                        window.setTimeout(() => {
-                            finalLinkRef.current.style.opacity = "1";
-                        }, 100);
-                    }, 1000);
-                }
-                if (progress !== 0 && !uploadedFile.file._id) {
-                    setProgress(99);
-                }
-            }
-        }
+                    finalLinkRef.current.style.opacity = "1";
+                }, 100);
+            }, 1000);
+        } else if (progress !== 0 && !uploadedFile.file) setProgress(99);
     }, [progress, displayProgress, uploadedFile]);
 
     useEffect(() => {
@@ -119,7 +117,7 @@ const Home = () => {
             shareBtnRef.current.style.color = "";
         }, 200);
         navigator.clipboard.writeText(
-            `${baseURL}/file/download/${uploadedFile.file._id}`
+            `${frontURL || baseURL}/download/${uploadedFile.file._id}`
         );
 
         const toolTip = document.querySelector(
@@ -140,8 +138,13 @@ const Home = () => {
         if (file) {
             const formdata = new FormData();
             formdata.append("file", file);
+
+            window.setTimeout(() => {
+                setDisplayProgress(true);
+            }, 500);
+
             axios
-                .post(`${baseURL}/server/file/`, formdata, {
+                .post(`${baseURL}/api/file/`, formdata, {
                     headers: {
                         "Content-Type": "multipart/form-data",
                     },
@@ -152,9 +155,8 @@ const Home = () => {
                     submitBtn.current.style.visibility = "hidden";
 
                     axios
-                        .get(`${baseURL}/server/file/get/${file.data._id}`)
+                        .get(`${baseURL}/api/file/${file.data._id}`)
                         .then((uploadedFile) => {
-                            setDisplayProgress(true);
                             setDisplayLinks(true);
                             setUploadedFile(uploadedFile.data);
                         })
