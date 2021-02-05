@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef, useEffect } from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom"; // React Router
 
 // import all the required components
@@ -11,8 +11,14 @@ import About from "./components/About";
 import "./App.css";
 
 const App = () => {
+    // Set the opacity to 1 after component mounting
+    const appRef = useRef(null);
+    useEffect(() => {
+        appRef.current.style.opacity = "1";
+    }, []);
+
     return (
-        <div className="app">
+        <div ref={appRef} className="app">
             <Router>
                 <Navbar />
                 <Switch>
