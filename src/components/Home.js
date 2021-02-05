@@ -14,12 +14,15 @@ if (baseURL === "http://localhost:5000") {
 
 // Home Page's component
 const Home = () => {
+    // Set the opacity to 1 after component mounting
+
     // Refs to handle the UI of the page
     const dropRef = useRef(null); // Drag-and-drop component's reference
     const submitBtn = useRef(null); // Submit button's reference
     const finalLinkRef = useRef(null); // Reference to the links displayed after file upload is done successfully
     const previewImgRef = useRef(null); // Reference to the preview image component
     const shareBtnRef = useRef(null); // Reference to the button that copies shareable link to the clipboard, after successful file upload
+    const homeRef = useRef(null);
     const firstRender = useRef(true); // Reference to prevent a useEffect block from executing on componentDidMount/first render
 
     // All the state variables
@@ -31,6 +34,10 @@ const Home = () => {
     const [progress, setProgress] = useState(0); // To set the progress bar's width/percentage
     const [displayProgress, setDisplayProgress] = useState(false); // Bolean variable to display the progress bar during file upload process
     const [displayLinks, setDisplayLinks] = useState(false); // Boolean var to display the links (to download/copy shareable link) after successful file upload
+
+    useEffect(() => {
+        homeRef.current.style.opacity = "1";
+    }, []);
 
     // UseEffect to handle how the progress bar works
     useEffect(() => {
@@ -235,7 +242,7 @@ const Home = () => {
     };
 
     return (
-        <section className="home">
+        <section ref={homeRef} className="home">
             {/* display any error message if it's there */}
             <p className="error-msg">{errorMsg}</p>
 

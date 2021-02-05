@@ -12,6 +12,8 @@ section.home {
     margin-top: 4em;
     align-items: center;
     font-family: 'Poppins', sans-serif;
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
 }
 
 /* style the error message that has to be displayed in case of file upload errors */
