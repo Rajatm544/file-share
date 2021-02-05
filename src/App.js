@@ -11,14 +11,8 @@ import About from "./components/About";
 import "./App.css";
 
 const App = () => {
-    // Set the opacity to 1 after component mounting
-    const appRef = useRef(null);
-    useEffect(() => {
-        appRef.current.style.opacity = "1";
-    }, []);
-
     return (
-        <div ref={appRef} className="app">
+        <div className="app">
             <Router>
                 <Navbar />
                 <Switch>

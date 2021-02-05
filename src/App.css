@@ -12,8 +12,6 @@ div.app {
   display: flex;
   flex-flow: column wrap;
   justify-content: space-between;
-  opacity: 0;
-  transition: opacity 0.3s ease-in-out;
 }
 
 /* for mobile screens */
