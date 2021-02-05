@@ -1,3 +1,4 @@
+/* to avoid any errors with flexbox display, set the height/width of the html tag and body tag */
 html, body {
   background: white;
   margin: 0;
@@ -13,6 +14,7 @@ div.app {
   justify-content: space-between;
 }
 
+/* for mobile screens */
 @media screen and (max-width:600px) {
   div.app {
     overflow-y: hidden;
