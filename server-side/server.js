@@ -1,10 +1,10 @@
-const express = require("express");
-const mongoose = require("mongoose");
-const cors = require("cors");
-const path = require("path");
-require("dotenv").config();
+const express = require("express"); // express framework to build the application
+const mongoose = require("mongoose"); //  mongoose ODM to handle mongoDB documents
+const cors = require("cors"); // package to avoid CORS errors
+const path = require("path"); // to handle static files' path to help deploy the app to heroku
+require("dotenv").config(); // package to handle the environment vars
 
-// configure the express app
+// configure the express app to use JSON and CORS()
 const app = express();
 app.use(cors());
 app.use(express.json());
