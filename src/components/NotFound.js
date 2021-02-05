@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import error404 from "../stylesheets/error-404.svg";
 import "../stylesheets/notFound.css";
 
+// 404-error page component
 const NotFound = () => {
     return (
         <div className="error-page">

@@ -1,6 +1,7 @@
 import React from "react";
 import "../stylesheets/footer.css";
 
+// component to display footer
 const Footer = () => {
     return (
         <footer>

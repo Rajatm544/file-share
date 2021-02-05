@@ -1,6 +1,7 @@
 import React from "react";
 import "../stylesheets/about.css";
 
+// component to act as the About page
 const About = () => {
     return (
         <div className="about">
