@@ -1,3 +1,6 @@
+/* style for the donwload page */
+
+/* display a line that says 'file is downloading...' */
 p.prompt {
     margin-top:8em;
     color: #08a1c4;

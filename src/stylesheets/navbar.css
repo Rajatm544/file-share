@@ -1,3 +1,6 @@
+/* style for the navbar */
+
+/* set display to flexbox and style accordingly */
 nav.navbar {
     display: flex;
     flex-flow: row wrap;
@@ -50,6 +53,7 @@ ul.nav-ul {
     height: 80%;
 }
 
+/* remove any default styles for the li tags and set style as needed */
 ul.nav-ul li.nav-li {
     list-style-type: none;
     font-weight: 500;
@@ -83,6 +87,7 @@ li.nav-li:hover a{
     background: none;
 }
 
+/* for mobile screens */
 @media screen and (max-width: 600px) {
     nav.navbar div.nav-brand {
         width:auto;

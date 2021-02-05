@@ -1,3 +1,4 @@
+ /* basinc style for the 404-error page */
  div.error-page {
      display: flex;
      margin-top:8em;
@@ -36,6 +37,7 @@ a.link-home {
     margin: 0 0.2em;
 }
 
+/* media query for mobile screens */
 @media screen and (max-width:600px) {
     div.error-page {
         max-width: 90vw;

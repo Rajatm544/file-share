@@ -1,7 +1,11 @@
+/* style for the components on the home page */
+
+/* remove outlines for buttons */
 button:focus {
     outline: transparent;
 }
 
+/* set flexbox display */
 section.home {
     display: flex;
     flex-flow: column nowrap;
@@ -10,6 +14,7 @@ section.home {
     font-family: 'Poppins', sans-serif;
 }
 
+/* style the error message that has to be displayed in case of file upload errors */
 section.home p.error-msg {
     font-size: 1em;
     line-height: 1.5em;
@@ -18,16 +23,17 @@ section.home p.error-msg {
     transition: 0.3s all ease-in-out;
 }
 
+/* style for the drag-and-drop section, along with progress bar and all the links */
 section.file-upload {
     display:flex;
     flex-flow: column nowrap;
     min-width: 60vw;
     max-width: 70vw;
     min-height: 50vh;
-    /* justify-content: space-between; */
     align-items: center;
 }
 
+/* style the drag-and-drop section */
 section.file-upload div.drop-zone {
     min-width:100%;
     min-height: 50vh;
@@ -58,6 +64,8 @@ form.file-form {
     flex-flow: column nowrap;
 }
 
+
+/* style the submit button */
 form.file-form button.submit-btn {
     display: inline-flex;
     flex-flow: row nowrap;
@@ -90,11 +98,13 @@ img.submit-icon {
     transition: all 0.3s ease-in-out;
 }
 
+/* use the same white logo used in the navbar and apply various properties to change its color to match the green hue */
 button.submit-btn:hover img.submit-icon {
     filter: invert(57%) sepia(22%) saturate(7130%) hue-rotate(155deg) brightness(89%) contrast(94%);
     
 }
 
+/* style the preview message in the file upload section */
 .file-upload .image-preview-message {
     display: inline-flex;
     align-items: center;
@@ -106,12 +116,14 @@ button.submit-btn:hover img.submit-icon {
     line-height: 1.5em;
     font-weight: 500;
 }
+
 .file-upload div.image-preview {
     display:inline-flex;
     flex-flow: row wrap;
     justify-content: center;
 }
 
+/* style for the image that is to be previewed */
 div.image-preview>img.preview-image {
     max-width: 70%;
     height: auto;
@@ -126,11 +138,13 @@ div.image-preview>img.preview-image {
     z-index:10;
 }
 
+/* set the max width of the progress bar */
 div.progress  {
     min-width: 50vw;
     max-width: 60vw;
 }
 
+/* color of the progress bar is set to be the same gradient as the navbar */
 .progress .determinate {
     background: linear-gradient(90deg, #08a1c4 0%, #08cfbe 40%, #02b875 100%);
     -moz-border-radius: 1em;
@@ -138,11 +152,13 @@ div.progress  {
     border-radius: 0.5em;
 }
 
+/* style the share button to display the tooltip in the required position */
 button.share-link {
     position: relative;
     display: inline-block;
 }
 
+/* set the style to the tooltip */
 button.share-link span.tooltiptext {
     visibility: hidden;
     position: absolute;
@@ -155,6 +171,7 @@ button.share-link span.tooltiptext {
     transition: all 0.2s ease-in-out;
 }
 
+/* adjust position of the tooltip to be beside the share button */
 button.share-link span.tooltiptext::after {
     content: "";
     position: absolute;
@@ -166,6 +183,8 @@ button.share-link span.tooltiptext::after {
     border-color: transparent #08cfbe transparent transparent;
 }
 
+
+/* style both the final links on the home page */
 div.final-links {
     display: inline-flex;
     flex-flow: row wrap;
@@ -193,7 +212,6 @@ div.final-links .link {
     font-weight: 500;
     border: 3px solid;
     border-image-slice: 1;
-    /* background: rgba(8, 207, 78, 0.9); */
     color: white;
     border-image-source: linear-gradient(135deg, #08a1c4 0%, #08cfbe 40%, #02b875 100%);
     background: linear-gradient(315deg, #08a1c4 0%, #08cfbe 40%, rgb(2, 184, 117, 0.9) 100%);
@@ -207,12 +225,14 @@ div.final-links .link:hover {
     color: #08a1c4;
 }
 
-@media screen and (max-width:600px) {
 
+/* media queries for the mobile screen */
+@media screen and (max-width:600px) {
     section.home {
         margin-top: 5em;
     }
 
+    /* reduce font size */
     section.home p.error-msg {
         font-size: 0.9em;
         line-height: 1.67em;
@@ -220,6 +240,7 @@ div.final-links .link:hover {
         max-width:90vw;
     }
 
+    /* adjust the widths of the drag-and-drop section */
     section.file-upload {
         min-width: 90vw;
         max-width: 95vw;
@@ -234,6 +255,7 @@ div.final-links .link:hover {
         text-align: center;
     }
 
+    /* increase width of the submit button */
     form.file-form button.submit-btn {
         min-width: 40vw;
         width: auto;
@@ -258,6 +280,7 @@ div.final-links .link:hover {
         max-width: 70vw;
     }
 
+    /* change the position of the tooltip display to be underneath the share button */
     button.share-link span.tooltiptext {
         top:110%;
         left: 15%;
