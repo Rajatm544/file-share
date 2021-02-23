@@ -1,0 +1,23 @@
+{
+    "short_name": "EasyShare",
+    "name": "EasyShare - File",
+    "icons": [{
+        "src": "/android-chrome-192x192.png",
+        "sizes": "192x192",
+        "type": "image/png",
+        "purpose": "maskable any"
+    },
+    {
+        "src": "/android-chrome-512x512.png",
+        "sizes": "512x512",
+        "type": "image/png",
+        "purpose": "maskable any"
+    }],
+  "start_url": "/",
+  "description": "A file sharing app built by Rajat",
+  "display": "standalone",
+  "theme_color": "#08a1c4",
+  "background_color": "#08cfbe"
+}
+
+
