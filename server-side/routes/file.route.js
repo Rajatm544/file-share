@@ -56,19 +56,19 @@ const upload = multer({
     },
 });
 
-// Root Route to get all the files in the reverse chronological order of file upload time
-router.get("/", (req, res) => {
-    try {
-        File.find()
-            .then(
-                (files) =>
-                    res.json(files.sort((a, b) => b.createdAt - a.createdAt)) // sort in reverse chronological order
-            )
-            .catch((err) => res.status(400).json(`Error: ${err}`));
-    } catch (error) {
-        if (error) res.status(500).json(error.message);
-    }
-});
+// // Root Route to get all the files in the reverse chronological order of file upload time
+// router.get("/", (req, res) => {
+//     try {
+//         File.find()
+//             .then(
+//                 (files) =>
+//                     res.json(files.sort((a, b) => b.createdAt - a.createdAt)) // sort in reverse chronological order
+//             )
+//             .catch((err) => res.status(400).json(`Error: ${err}`));
+//     } catch (error) {
+//         if (error) res.status(500).json(error.message);
+//     }
+// });
 
 // Route to upload new file
 router.post(
