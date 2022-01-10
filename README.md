@@ -4,7 +4,7 @@
 
 A MERN stack file sharing application that uses AWS' S3 storage along with the multer-S3 node package to easily share/upload files.
 
-![GitHub](https://img.shields.io/github/license/Rajatm544/file-share?style=flat-square) ![Heroku](https://pyheroku-badge.herokuapp.com/?app=rajat-easyshare&style=flat-square) ![GitHub last commit](https://img.shields.io/github/last-commit/Rajatm544/file-share?style=flat-square) ![Maintenance](https://img.shields.io/maintenance/yes/2021?style=flat-square) [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](http://makeapullrequest.com)
+![GitHub](https://img.shields.io/github/license/Rajatm544/file-share?style=flat-square) ![Heroku](https://pyheroku-badge.herokuapp.com/?app=rajat-easyshare&style=flat-square) ![GitHub last commit](https://img.shields.io/github/last-commit/Rajatm544/file-share?style=flat-square) ![Maintenance](https://img.shields.io/maintenance/yes/2022?style=flat-square) [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](http://makeapullrequest.com)
 
 ## Getting Started
 
